@@ -4,9 +4,9 @@ require 'open-uri'
 module Test
   module Commands
     class Command < SlackRubyBot::Commands::Base
-      command 'get_latest_episodes' do |client, data, _match|
-        url = 'https://www.driftingruby.com/episodes/feed.rss'
-        rss = RSS::Parser.parse(open(url).read, false).items.first
+      command 'get_latest_article' do |client, data, _match|
+        url = "https://medium.com/feed/@nashmia.habib"
+        rss = RSS::Parser.parse(open(url), false).items.last
         client.say(channel: data.channel, text: rss.link)
       end
 
